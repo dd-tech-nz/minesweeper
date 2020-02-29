@@ -19,6 +19,7 @@ body {
 
 #message {
   font-size: 1.5rem;
+  margin-bottom: -4%
   
 }
 
@@ -26,6 +27,7 @@ body {
   font-size: 4rem;
   color: #800020;
   font-family: 'Trade Winds' !important;
+  
 }
 
 .board {
