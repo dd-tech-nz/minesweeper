@@ -8,17 +8,17 @@ var board = {
     { row: 2, col: 0, isMine: false, hidden: true },
     { row: 3, col: 0, isMine: false, hidden: true },
     { row: 0, col: 1, isMine: false, hidden: true },
-    { row: 1, col: 1, isMine: true, hidden: true },
+    { row: 1, col: 1, isMine: false, hidden: true },
     { row: 2, col: 1, isMine: false, hidden: true },
     { row: 3, col: 1, isMine: false, hidden: true },
     { row: 0, col: 2, isMine: false, hidden: true },
     { row: 1, col: 2, isMine: true, hidden: true },
     { row: 2, col: 2, isMine: true, hidden: true },
-    { row: 3, col: 2, isMine: true, hidden: true },
+    { row: 3, col: 2, isMine: false, hidden: true },
     { row: 0, col: 3, isMine: true, hidden: true },
-    { row: 1, col: 3, isMine: true, hidden: true },
+    { row: 1, col: 3, isMine: false, hidden: true },
     { row: 2, col: 3, isMine: true, hidden: true },
-    { row: 3, col: 3, isMine: true, hidden: true }
+    { row: 3, col: 3, isMine: false, hidden: true }
   ]
 }
 
@@ -26,6 +26,8 @@ function startGame() {
   for (var i = 0; i < board.cells.length; i++) {
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
   }
+  document.addEventListener('click', checkForWin)
+  document.addEventListener('contextmenu', checkForWin)
   // Don't remove this function call: it makes the game work!
   lib.initBoard()
 }
@@ -35,6 +37,20 @@ function startGame() {
 // 1. Are all of the cells that are NOT mines visible?
 // 2. Are all of the mines marked?
 function checkForWin() {
+  var mineCount = 5
+  var markedCount = 0
+
+  for (var i = 0; i < board.cells.length; i++) {
+    if (board.cells[i].isMine && board.cells[i].isMarked) {
+      markedCount ++
+    }
+    if (mineCount == markedCount) {
+      lib.displayMessage('You win!')
+      
+    }
+  }
+
+ 
 
   // You can use this function call to declare a winner (once you've
   // detected that they've won, that is!)
@@ -58,6 +74,8 @@ function countSurroundingMines(cell) {
     surrounding[i].isMine ? count ++ : count
           
   }
+
+  
   
   return count
 }
