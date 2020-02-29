@@ -4,6 +4,7 @@ html, body {
 }
 
 body {
+  background: url('images/mine.jpg') center center no-repeat;
   display: flex;
   align-items: center;
   justify-content: flex-center;
@@ -18,6 +19,13 @@ body {
 
 #message {
   font-size: 1.5rem;
+  
+}
+
+#message p {
+  font-size: 4rem;
+  color: #800020;
+  font-family: 'Trade Winds' !important;
 }
 
 .board {
@@ -57,4 +65,48 @@ div.hidden:hover {
 
 div.marked, div.marked:hover {
   background: no-repeat center/60% url("images/mark.svg") deepskyblue;
+}
+
+/* Style animated buttons */
+.box { 
+  margin: 20px 0;
+  padding: 20px 40px;
+ font-size: 20px;
+ text-align: center;
+ cursor: pointer;
+ outline: none;
+ color: black;
+ background-color: #6b8e23;
+ border: none;
+ border-radius: 15px;
+ box-shadow: 0 9px #8e7c23;
+ width: 100%; /* makes buttons same width */
+ table-layout: fixed;
+ border-collapse: collapse;
+ 
+}
+
+.box:hover {
+ background-color: #32CD32;
+}
+
+.box:active {
+ background-color: #296e01;
+ box-shadow: 0 5px #2F4F4F;
+ transform: translateY(5px);
+}
+
+#board {
+  text-align: center;
+}
+
+.control {
+  display: inline-block;
+}
+
+#reset {
+  font-weight: bold;
+  font-family: 'Trade Winds' !important;
+  color: #800020;
+  font-size: 2rem
 }

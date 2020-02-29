@@ -1,26 +1,9 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
-var board = {
-  cells: [
-    { row: 0, col: 0, isMine: true, hidden: true },
-    { row: 1, col: 0, isMine: false, hidden: true },
-    { row: 2, col: 0, isMine: false, hidden: true },
-    { row: 3, col: 0, isMine: false, hidden: true },
-    { row: 0, col: 1, isMine: false, hidden: true },
-    { row: 1, col: 1, isMine: false, hidden: true },
-    { row: 2, col: 1, isMine: false, hidden: true },
-    { row: 3, col: 1, isMine: false, hidden: true },
-    { row: 0, col: 2, isMine: false, hidden: true },
-    { row: 1, col: 2, isMine: true, hidden: true },
-    { row: 2, col: 2, isMine: true, hidden: true },
-    { row: 3, col: 2, isMine: false, hidden: true },
-    { row: 0, col: 3, isMine: true, hidden: true },
-    { row: 1, col: 3, isMine: false, hidden: true },
-    { row: 2, col: 3, isMine: true, hidden: true },
-    { row: 3, col: 3, isMine: false, hidden: true }
-  ]
-}
+var board = initBoard()
+
+
 
 function startGame() {
   for (var i = 0; i < board.cells.length; i++) {
@@ -28,6 +11,10 @@ function startGame() {
   }
   document.addEventListener('click', checkForWin)
   document.addEventListener('contextmenu', checkForWin)
+  document.getElementById("reset").onclick = function () {
+    play("myAudio"); setTimeout(function () { location.reload(); }, 2000);
+  }
+ 
   // Don't remove this function call: it makes the game work!
   lib.initBoard()
 }
@@ -37,25 +24,38 @@ function startGame() {
 // 1. Are all of the cells that are NOT mines visible?
 // 2. Are all of the mines marked?
 function checkForWin() {
-  var mineCount = 5
+  var mineCount = 0
   var markedCount = 0
+  var cellShow = 0
+  
 
-  for (var i = 0; i < board.cells.length; i++) {
-    if (board.cells[i].isMine && board.cells[i].isMarked) {
-      markedCount ++
+  for (var j = 0; j < board.cells.length; j++) {
+    if (board.cells[j].isMine) {
+      mineCount++
     }
-    if (mineCount == markedCount) {
-      lib.displayMessage('You win!')
-      
+    if (board.cells[j].isMarked) {
+      markedCount++
+
+    }
+    if (board.cells[j].hidden == false) {
+      cellShow++
     }
   }
+
+  if ((mineCount !== markedCount) || (markedCount + cellShow < 16)) {
+    return
+  } else {
+    lib.displayMessage('You win!')
+    play("hope")
+  }
+}
 
  
 
   // You can use this function call to declare a winner (once you've
   // detected that they've won, that is!)
   //   lib.displayMessage('You win!')
-}
+
 
 // Define this function to count the number of mines around the cell
 // (there could be as many as 8). You don't have to get the surrounding
@@ -79,4 +79,27 @@ function countSurroundingMines(cell) {
   
   return count
 }
+
+function initBoard() {
+  var board = {}
+  board.cells = []
+  for (var i = 0; i < 4; i++) {
+    for (var j = 0; j < 4; j++) {
+      
+       board.cells.push({ row: i, col: j, isMine: (Math.random() >= 0.7), isMarked: false, hidden: true })
+    }
+      
+    
+    
+  }
+  return board
+}
+
+function play(clipId) {
+  var x = document.getElementById(clipId);
+  x.play();
+}
+
+
+
 

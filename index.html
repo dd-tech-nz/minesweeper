@@ -3,13 +3,37 @@
   <head>
     <title>Minesweeper</title>
     <link rel="stylesheet" href="minesweeper.css">
+    <link href="https://fonts.googleapis.com/css?family=Trade+Winds&display=swap" rel="stylesheet">
     <script src="lib/tests.js"></script>
     <script src="lib/lib.js"></script>
     <script src="minesweeper.js"></script>
+    <audio id="myAudio">
+      <source src="images/count.mp3" type="audio/mpeg">
+     </audio>
+     <audio id="annoy">
+      <source src="images/annoy.mp3" type="audio/mpeg">
+     </audio>
+     <audio id="mark">
+      <source src="images/mark.mp3" type="audio/mpeg">
+     </audio>
+     <audio id="phew">
+      <source src="images/phew.mp3" type="audio/mpeg">
+     </audio>
+     <audio id="hope">
+      <source src="images/phew.mp3" type="audio/mpeg">
+     </audio>
   </head>
   <body>
     <div id="message"></div>
     <div id="notes"></div>
-    <div class="board"></div>
+    <div id="board">
+      <div class="board"></div>
+      <div class="control">
+        <button id="reset" class="box" type="button">Reset</button>
+        
+      </div>
+    </div>
+    <br> <br>
+    
   </body>
 </html>
