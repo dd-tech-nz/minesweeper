@@ -45,8 +45,9 @@ function checkForWin() {
   if ((mineCount !== markedCount) || (markedCount + cellShow < 16)) {
     return
   } else {
-    lib.displayMessage('You win!')
     play("hope")
+    lib.displayMessage('You win!')
+    
   }
 }
 
