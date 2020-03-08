@@ -1,19 +1,42 @@
-document.addEventListener('DOMContentLoaded', startGame)
-
-// Define your `board` object here!
-var board = initBoard()
+document.addEventListener('DOMContentLoaded', setDifficulty)
 
 
+var board;
 
-function startGame() {
+function setDifficulty(value) {
+  x = document.getElementById("size").value
+  //console.log(x)
+  
+  
+  var y = initBoard(x)
+  document.getElementsByClassName('board')[0].innerHTML = "";
+  startGame(y)
+  
+  
+  
+  
+}
+
+
+
+
+
+
+
+function startGame(board1) {
+  board = board1
+   
+  
   for (var i = 0; i < board.cells.length; i++) {
-    board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
+     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
   }
   document.addEventListener('click', checkForWin)
   document.addEventListener('contextmenu', checkForWin)
-  document.getElementById("reset").onclick = function () {
+  document.getElementById("reset").onclick = function()
+  {
     play("myAudio"); setTimeout(function () { location.reload(); }, 2000);
   }
+ 
  
   // Don't remove this function call: it makes the game work!
   lib.initBoard()
@@ -70,7 +93,7 @@ function countSurroundingMines(cell) {
   
   var count = 0
   var surrounding = lib.getSurroundingCells(cell.row, cell.col)
-  //console.log(surrounding)
+ 
   for (var i = 0; i < surrounding.length; i++) {
     surrounding[i].isMine ? count ++ : count
           
@@ -81,11 +104,18 @@ function countSurroundingMines(cell) {
   return count
 }
 
-function initBoard() {
+function initBoard(x) {
+  
+  
+  
+
+  
+  
   var board = {}
   board.cells = []
-  for (var i = 0; i < 4; i++) {
-    for (var j = 0; j < 4; j++) {
+  for (var i = 0; i < x; i++) {
+    
+    for (var j = 0; j < x; j++) {
       
        board.cells.push({ row: i, col: j, isMine: (Math.random() >= 0.7), isMarked: false, hidden: true })
     }
@@ -94,6 +124,11 @@ function initBoard() {
     
   }
   return board
+  
+  
+  
+ 
+  
 }
 
 function play(clipId) {
@@ -101,6 +136,10 @@ function play(clipId) {
   x.play();
 }
 
-
+function boardRst(value) {
+  document.getElementsByClassName('board')[0].innerHTML = ""
+  setDifficulty(value)
+  startGame()
+}
 
 

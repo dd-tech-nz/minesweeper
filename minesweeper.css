@@ -112,3 +112,18 @@ div.marked, div.marked:hover {
   color: #800020;
   font-size: 2rem
 }
+
+form label {
+  
+  display: block;
+  font-family: 'Trade Winds' !important;
+  margin: 25px 0;
+  font-weight: bold;
+  color: #800020;
+  font-size: 2rem;
+}
+
+#size {
+  width: 150px;
+  font-size: 1.5rem;
+}

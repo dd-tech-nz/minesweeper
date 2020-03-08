@@ -4,9 +4,7 @@
     <title>Minesweeper</title>
     <link rel="stylesheet" href="minesweeper.css">
     <link href="https://fonts.googleapis.com/css?family=Trade+Winds&display=swap" rel="stylesheet">
-    <script src="lib/tests.js"></script>
-    <script src="lib/lib.js"></script>
-    <script src="minesweeper.js"></script>
+    
     <audio id="myAudio">
       <source src="images/count.mp3" type="audio/mpeg">
      </audio>
@@ -24,16 +22,36 @@
      </audio>
   </head>
   <body>
+    
     <div id="message"></div>
     <div id="notes"></div>
+    <div class="boardSize">
+      <form>
+        
+          <label>
+            Field Size<br>
+            <select id="size" onchange="setDifficulty(this)">
+              <option value='3'>Small</option>
+              <option value='4' selected>Normal</option>
+              <option value='5'>Large</option>
+              <option value='6'>Extra Large</option>
+              
+            </select>
+          </label>
+        
+      </form>
+    </div>
     <div id="board">
       <div class="board"></div>
       <div class="control">
         <button id="reset" class="box" type="button">Reset</button>
         
       </div>
+      
     </div>
     <br> <br>
-    
+    <script src="lib/tests.js"></script>
+    <script src="lib/lib.js"></script>
+    <script src="minesweeper.js"></script>
   </body>
 </html>
